@@ -16,7 +16,8 @@
 #include <vector>
 
 #define PY_SSIZE_T_CLEAN
-#include <python3.6m/Python.h>
+// #include <python3.6m/Python.h>
+#include <python3.8/Python.h>
 
 #include "benchmarks/SCAN/IndexBased/scan.h"
 #include "benchmarks/SCAN/IndexBased/similarity_measure.h"

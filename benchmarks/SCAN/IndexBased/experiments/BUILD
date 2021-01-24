@@ -1,7 +1,8 @@
 cc_binary(
     name = "run_gbbs_experiments",
     srcs = ["run_gbbs_experiments.cc"],
-    linkopts = ["-lpython3.6m"],
+    # linkopts = ["-lpython3.6m"],
+    linkopts = ["-lpython3.8"],
     deps = [
         "//benchmarks/SCAN/IndexBased:scan",
         "//benchmarks/SCAN/IndexBased:similarity_measure",

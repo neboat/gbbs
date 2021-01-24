@@ -50,6 +50,7 @@ build:cilk --cxxopt=-UHOMEGROWN
 build:cilk --cxxopt=-DCILK
 build:cilk --cxxopt=-fopencilk
 build:cilk --linkopt=-fopencilk
+build:cilk --cxxopt=-I/usr/include/python3.8
 
 # Build using Cilksan to check for races.
 build:cilksan --cxxopt=-fsanitize=cilk
