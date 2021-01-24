@@ -20,7 +20,7 @@ OPT = -O3 -g -DNDEBUG
 CFLAGS = $(INCLUDE_DIRS) -mcx16 -ldl -std=c++17 -march=native $(OPT) $(INTT) $(INTE) -DAMORTIZEDPD $(CONCEPTS) -DUSEMALLOC
 
 OMPFLAGS = -DOPENMP -fopenmp
-CILKFLAGS = -DCILK -fcilkplus
+CILKFLAGS = -DCILK -fopencilk
 HGFLAGS = -DHOMEGROWN -pthread
 
 ifdef CLANG

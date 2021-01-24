@@ -76,7 +76,7 @@ inline void parallel_for(long start, long end, F f, long granularity,
 template <typename F>
 inline void parallel_for_1(long start, long end, F f, long granularity,
                            bool conservative) {
-  _Pragma("cilk grainsize = 1") cilk_for(long i = start; i < end; i++) f(i);
+  _Pragma("cilk grainsize 1") cilk_for(long i = start; i < end; i++) f(i);
 }
 
 template <typename Lf, typename Rf>
@@ -114,7 +114,9 @@ inline void parallel_for_alloc(Af init_alloc, Df finish_alloc, long start,
 }
 
 inline int num_workers() { return __cilkrts_get_nworkers(); }
-inline int worker_id() { return __cilkrts_get_worker_number(); }
+inline int worker_id() {
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+  return __cilkrts_get_worker_number(); }
 #ifdef SAGE
 inline int numanode() {
   std::cout << "numanode() only supported with homegrown scheduler" << std::endl;

@@ -45,11 +45,24 @@ build --cxxopt=-Wvla
 # Build without parallelism.
 build:serial --cxxopt=-UHOMEGROWN
 
-# Build using CilkPlus for parallelism.
+# Build using OpenCilk for parallelism.
 build:cilk --cxxopt=-UHOMEGROWN
 build:cilk --cxxopt=-DCILK
-build:cilk --cxxopt=-fcilkplus
-build:cilk --linkopt=-lcilkrts
+build:cilk --cxxopt=-fopencilk
+build:cilk --linkopt=-fopencilk
+
+# Build using Cilksan to check for races.
+build:cilksan --cxxopt=-fsanitize=cilk
+build:cilksan --cxxopt=-O2
+build:cilksan --cxxopt=-fno-vectorize
+build:cilksan --cxxopt=-fno-stripmine
+build:cilksan --cxxopt=-fno-unroll-loops
+build:cilksan --cxxopt=-g
+build:cilksan --linkopt=-fsanitize=cilk
+
+# Build using Cilkscale to measure scalability.
+build:cilkscale --cxxopt=-fcilktool=cilkscale
+build:cilkscale --linkopt=-fcilktool=cilkscale
 
 # Build using OpenMP for parallelism.
 build:openmp --cxxopt=-UHOMEGROWN

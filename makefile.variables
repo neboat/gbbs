@@ -59,7 +59,7 @@ else ifeq ($(OS), mac)
 endif
 
 OMPFLAGS = -DOPENMP -fopenmp
-CILKFLAGS = -DCILK -fcilkplus
+CILKFLAGS = -DCILK -fopencilk
 HGFLAGS = -DHOMEGROWN -pthread
 
 ifdef CLANG
