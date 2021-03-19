@@ -407,7 +407,7 @@ void RunScanUnweighted(Graph& graph, const commandLine& params) {
     // get the graph into cache so timings are consistent
     indexed_scan::Index{&graph, scan::ApproxCosineSimilarity{1, 0}};
   }
-  const bool is_serial{params.getOptionValue("--serial")};
+  const bool is_serial(params.getOptionValue("--serial"));
   constexpr size_t kIndexRounds{5};
   constexpr size_t kClusterRounds{5};
   RunCosineExperiments(&graph, kIndexRounds, kClusterRounds, is_serial);
@@ -421,7 +421,7 @@ void RunScanWeighted(Graph& graph, const commandLine& params) {
     // get the graph into cache so timings are consistent
     indexed_scan::Index{&graph, scan::ApproxCosineSimilarity{1, 0}};
   }
-  const bool is_serial{params.getOptionValue("--serial")};
+  const bool is_serial(params.getOptionValue("--serial"));
   constexpr size_t kIndexRounds{5};
   constexpr size_t kClusterRounds{5};
   RunCosineExperiments(&graph, kIndexRounds, kClusterRounds, is_serial);
@@ -435,12 +435,12 @@ int main(int argc, char* argv[]) {
   gbbs::commandLine params{
     argc, argv, "-s [-wf] [--serial] <input graph file>"};
   const char* input_graph_file{params.getArgument(0)};
-  const bool is_graph_symmetric{params.getOptionValue("-s")};
+  const bool is_graph_symmetric(params.getOptionValue("-s"));
   ASSERT(is_graph_symmetric);
-  const bool is_graph_compressed{params.getOptionValue("-c")};
+  const bool is_graph_compressed(params.getOptionValue("-c"));
   ASSERT(!is_graph_compressed);
-  const bool is_graph_float_weighted{params.getOptionValue("-wf")};
-  const bool should_mmap_graph{params.getOptionValue("-m")};
+  const bool is_graph_float_weighted(params.getOptionValue("-wf"));
+  const bool should_mmap_graph(params.getOptionValue("-m"));
   if (is_graph_float_weighted) {
     auto graph{gbbs::gbbs_io::read_weighted_symmetric_graph<float>(
         input_graph_file, should_mmap_graph)};
